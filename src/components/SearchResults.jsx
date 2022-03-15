@@ -5,11 +5,12 @@ import { Grid, Card, Gradient, NormalLink } from "./StyledComps";
 const SearchResults = () => {
   const { searchTerm } = useParams();
   const [searchResults, setSearchResults] = useState([]);
-  const endPoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY_1000000}&query=${searchTerm}`;
 
-  const getSearchResults = (url) => {
-    if (!localStorage.getItem(searchTerm)) {
-      fetch(url)
+  const getSearchResults = (x) => {
+    if (!localStorage.getItem(x)) {
+      fetch(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY_1000000}&query=${x}`
+      )
         .then((res) => res.json())
         .then((data) => {
           localStorage.setItem(searchTerm, JSON.stringify(data.results));
@@ -21,7 +22,7 @@ const SearchResults = () => {
     }
   };
   useEffect(() => {
-    getSearchResults(endPoint);
+    getSearchResults(searchTerm);
   }, [searchTerm]);
   return (
     <Grid

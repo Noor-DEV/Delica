@@ -27,7 +27,6 @@ const Recipe = () => {
   useEffect(() => {
     getInfo(id);
   }, [id]);
-  const { extendedIngredients } = info;
   return (
     <DetailWrapper
       animate={{ opacity: 1 }}

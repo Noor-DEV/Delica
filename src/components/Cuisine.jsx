@@ -4,23 +4,24 @@ import { Link, useParams } from "react-router-dom";
 import { Grid, Card, Gradient, NormalLink } from "./StyledComps";
 const Cuisine = () => {
   const { origin } = useParams();
-  const endPoint = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY_1000000}&cuisine=${origin}`;
   const [cuisine, setCuisine] = useState([]);
-  const getCuisine = (url) => {
-    if (!localStorage.getItem(origin)) {
-      fetch(url)
+  const getCuisine = (x) => {
+    if (!localStorage.getItem(x)) {
+      fetch(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY_1000000}&cuisine=${x}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setCuisine(data.results);
-          localStorage.setItem(origin, JSON.stringify(data.results));
+          localStorage.setItem(x, JSON.stringify(data.results));
         })
         .catch((err) => console.log("Error in fetching Cuisin", err));
     } else {
-      setCuisine(JSON.parse(localStorage.getItem(origin)));
+      setCuisine(JSON.parse(localStorage.getItem(x)));
     }
   };
   useEffect(() => {
-    getCuisine(endPoint);
+    getCuisine(origin);
   }, [origin]);
   return (
     <Grid

@@ -4,11 +4,9 @@ import { Form, Input } from "./StyledComps";
 import { useNavigate } from "react-router-dom";
 const Search = () => {
   const [search, setSearch] = useState("");
-  useEffect(() => {}, []);
   const nav = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // window.location = `/searched/${search}`;
     nav(`/searched/${search}`);
   };
   return (

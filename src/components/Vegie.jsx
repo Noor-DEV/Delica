@@ -5,14 +5,14 @@ import React, { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Card, Wrapper, Gradient, NormalLink } from "./StyledComps";
-
-const endPoint = `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY_NOOR}&tags=vegetarian&number=15`;
 const Vegies = () => {
   const [vegies, setVegies] = useState([]);
-  const getVegies = async (url) => {
+  const getVegies = async () => {
     if (!localStorage.getItem("vegies")) {
       try {
-        const res = await fetch(url);
+        const res = await fetch(
+          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY_NOOR}&tags=vegetarian&number=15`
+        );
         const data = await res.json();
         setVegies(data.recipes);
         localStorage.setItem("vegies", JSON.stringify(data.recipes));
@@ -26,7 +26,7 @@ const Vegies = () => {
     }
   };
   useEffect(() => {
-    getVegies(endPoint);
+    getVegies();
   }, []);
 
   return (
