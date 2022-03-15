@@ -11,7 +11,7 @@ const Vegies = () => {
     if (!localStorage.getItem("vegies")) {
       try {
         const res = await fetch(
-          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY_NOOR}&tags=vegetarian&number=15`
+          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&tags=vegetarian&number=15`
         );
         const data = await res.json();
         setVegies(data.recipes);

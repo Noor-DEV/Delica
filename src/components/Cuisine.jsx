@@ -8,7 +8,7 @@ const Cuisine = () => {
   const getCuisine = (x) => {
     if (!localStorage.getItem(x)) {
       fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY_1000000}&cuisine=${x}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${x}`
       )
         .then((res) => res.json())
         .then((data) => {

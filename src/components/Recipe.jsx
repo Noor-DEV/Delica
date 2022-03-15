@@ -9,7 +9,7 @@ const Recipe = () => {
   const getInfo = (x) => {
     if (!localStorage.getItem(x)) {
       fetch(
-        `https://api.spoonacular.com/recipes/${x}/information?apiKey=${process.env.REACT_APP_API_KEY_1000000}`
+        `https://api.spoonacular.com/recipes/${x}/information?apiKey=${process.env.REACT_APP_API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => {
